@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.example.drawboard.MainViewModel" />
+        <variable
+            name="clickEvents"
+            type="com.example.drawboard.adapter.ClickEvents" />
+        <variable
+            name="draw"
+            type="com.example.drawboard.Draw" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <com.example.drawboard.Draw
+            android:id="@+id/drawView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/color4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color4"
+            android:clickable="true"
+            android:tag="4"
+            android:onClick="@{(view)->clickEvents.changePaintColor(view,draw)}"
+            app:layout_constraintStart_toStartOf="@+id/color3"
+            app:layout_constraintTop_toTopOf="@+id/color3"
+            app:tint="#918838" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/color3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color3"
+            android:clickable="true"
+            android:onClick="@{(view)->clickEvents.changePaintColor(view,draw)}"
+            android:tag="3"
+            app:layout_constraintStart_toStartOf="@+id/color1"
+            app:layout_constraintTop_toTopOf="@+id/color1"
+            app:tint="#3F51B5" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/color2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color2"
+            android:onClick="@{(view)->clickEvents.changePaintColor(view,draw)}"
+            android:clickable="true"
+            android:tag="2"
+            app:layout_constraintStart_toStartOf="@+id/color3"
+            app:layout_constraintTop_toTopOf="@+id/color3" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/color1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color1"
+            android:onClick="@{(view)->clickEvents.changePaintColor(view,draw)}"
+            android:clickable="true"
+            android:tag="1"
+            app:layout_constraintStart_toStartOf="@+id/colorMenu"
+            app:layout_constraintTop_toTopOf="@+id/colorMenu" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/colorMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="88dp"
+            android:backgroundTint="#59B0F6"
+            android:clickable="true"
+            android:onClick="@{(view)->clickEvents.dealWithColorMenu(view,model)}"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/color_lens"
+            app:tint="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            shouldOpen="@{model.showPanSize}"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#E498F1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tag="5"
+                android:onClick="@{(view)->clickEvents.changeStrokeWidth(view,draw)}"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                app:srcCompat="@drawable/brightness"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tag="15"
+                android:onClick="@{(view)->clickEvents.changeStrokeWidth(view,draw)}"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                app:srcCompat="@drawable/brightness"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:tag="20"
+                android:onClick="@{(view)->clickEvents.changeStrokeWidth(view,draw)}"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView4"
+                app:srcCompat="@drawable/brightness"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:tag="25"
+                android:onClick="@{(view)->clickEvents.changeStrokeWidth(view,draw)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/brightness"
+                app:tint="@color/white" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#31AFE8"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#64C5F1"
+                android:clickable="true"
+                android:onClick="@{(view)->clickEvents.savePictureToGallary(view,draw,model)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/downLoad"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/image"
+                app:tint="@color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/downLoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#64C5F1"
+                android:clickable="true"
+                android:onClick="@{(view)->clickEvents.shareImage(view,model,draw)}"
+                app:layout_constraintEnd_toStartOf="@+id/back"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pic"
+                app:layout_constraintTop_toTopOf="@+id/pic"
+                app:srcCompat="@drawable/download"
+                app:tint="@color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#64C5F1"
+                android:clickable="true"
+                app:layout_constraintEnd_toStartOf="@+id/pan"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/downLoad"
+                app:layout_constraintTop_toTopOf="@+id/downLoad"
+                app:srcCompat="@drawable/back"
+                android:onClick="@{(view)->clickEvents.undo(view,draw)}"
+                app:tint="@color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/pan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#64C5F1"
+                android:clickable="true"
+                android:tag="6"
+                android:onClick="@{(view)->clickEvents.changePenSizeVisiblwState(view,model,draw)}"
+                app:layout_constraintEnd_toStartOf="@+id/bigPan"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/back"
+                app:layout_constraintTop_toTopOf="@+id/back"
+                app:srcCompat="@drawable/pan"
+                app:tint="@color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/bigPan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#268EBD"
+                android:tag="5"
+                android:clickable="true"
+                android:onClick="@{(view)->clickEvents.changePaintColor(view,draw)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pan"
+                app:layout_constraintTop_toTopOf="@+id/pan"
+                app:srcCompat="@drawable/format_paint"
+                app:tint="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

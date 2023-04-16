@@ -1,0 +1,45 @@
+fun requestPermissions(){
+        //保存需要请求的权限
+        val permissionsArray = arrayListOf<String>()
+        //创建请求权限的launcher对象
+        val resultLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()){
+            //获取请求结果
+            isReadable = it[Manifest.permission.READ_EXTERNAL_STORAGE] ?: false
+            isWritable = it[Manifest.permission.WRITE_EXTERNAL_STORAGE] ?: false
+
+
+            if (isReadable){
+                Log.v("pxd","获取读权限成功")
+                //将视图转化为图片
+                //保存图片
+            }
+            if (isWritable){
+                Log.v("pxd","获取写权限成功")
+            }
+        }
+
+        if (!isReadable){
+            permissionsArray.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+        if (!isWritable){
+            permissionsArray.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+
+        //发起请求
+        resultLauncher.launch(permissionsArray.toTypedArray())
+    }
+
+    fun checkPermissions(){
+        isReadable = ContextCompat.checkSelfPermission(
+            this,Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+
+        isWritable = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){ //29
+            true
+        }else {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
